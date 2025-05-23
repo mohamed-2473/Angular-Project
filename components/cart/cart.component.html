@@ -51,23 +51,28 @@
                       </div>
                       <div class="d-flex flex-row align-items-center">
                         <div class="me-4">
-                          <div class="input-group" style="width: 120px;">
-                            <button class="btn btn-outline-secondary" 
+
+                          <div class="input-group quantity-selector" style="width: 130px;">
+                            <button class="btn btn-outline-secondary decrement-btn" 
                                     type="button" 
                                     (click)="updateQuantity(item, -1)"
-                                    [disabled]="itemQuantities[item.id] === 1">
-                              -
+                                    [disabled]="itemQuantities[item.id] === 1"
+                                    [class.disabled]="itemQuantities[item.id] === 1">
+                              <i class="bi bi-dash"></i>
                             </button>
-                            <input type="text" 
-                                   class="form-control text-center" 
-                                   [value]="itemQuantities[item.id] || 1"
-                                   readonly>
-                            <button class="btn btn-outline-secondary" 
+                            
+                            <input type="text"
+                                  class="form-control text-center quantity-input text-primary" 
+                                  [value]="itemQuantities[item.id] || 1"
+                                  readonly>
+
+                            <button class="btn btn-outline-secondary increment-btn" 
                                     type="button" 
                                     (click)="updateQuantity(item, 1)">
-                              +
+                              <i class="bi bi-plus"></i>
                             </button>
                           </div>
+
                         </div>
                         <div style="width: 80px; text-align: center;">
                           <h6 class="mb-0 fs-5 text-primary">

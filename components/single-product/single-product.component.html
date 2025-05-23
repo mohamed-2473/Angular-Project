@@ -96,24 +96,12 @@
           </div>
         }
         
-        <div class="product-actions d-flex gap-3 mb-4">
-          <div class="input-group quantity-selector" style="width: 120px;">
-            <button class="btn btn-outline-secondary" type="button" (click)="decrementQuantity()">-</button>
-            <input 
-              type="number" 
-              class="form-control text-center"
-              [value]="quantity"
-              (change)="updateQuantity($event)"
-              min="1" 
-              [max]="prodItem.stock"
+        <div class="product-actions mb-4">
+            <button
+              class="btn btn-primary flex-grow-1"
+              [disabled]="prodItem.stock === 0"
+              (click)="addToCartFromDetails(prodItem)"
             >
-            <button class="btn btn-outline-secondary" type="button" (click)="incrementQuantity()">+</button>
-          </div>
-          <button
-            class="btn btn-primary flex-grow-1"
-            [disabled]="prodItem.stock === 0"
-            (click)="addToCartFromDetails(prodItem)"
-          >
             <i class="bi bi-cart-plus"></i> Add to Cart
           </button>
         </div>

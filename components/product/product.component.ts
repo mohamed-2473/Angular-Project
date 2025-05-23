@@ -2,10 +2,11 @@ import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ServiceService } from '../../services/service.service';
 import { Product } from '../../types/product';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product',
-  imports: [RouterLink],
+  imports: [RouterLink, CurrencyPipe],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
