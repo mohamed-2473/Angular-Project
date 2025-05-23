@@ -1,0 +1,88 @@
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center bg-light py-5">
+  <div class="card shadow col-lg-10 col-xl-8">
+    <div class="card-body p-md-5">
+      <div class="row g-0">
+        <!-- Registration Form Column -->
+        <div class="col-md-12 col-lg-6 d-flex align-items-center">
+          <div class="w-100 p-3 p-md-5">
+            <h2 class="text-center mb-4 fw-bold">Create Account</h2>
+            
+            <form>
+              <!-- Name Input -->
+              <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control form-control-lg" id="name" placeholder="full name">
+              </div>
+
+              <!-- Email Input -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control form-control-lg" id="email" placeholder="example@domain.com">
+              </div>
+
+              <!-- Password Input -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                  <input [type]="showPassword ? 'text' : 'password'" 
+                         class="form-control form-control-lg" 
+                         id="password">
+                  <button class="btn btn-outline-secondary" 
+                          type="button" 
+                          (click)="togglePassword()">
+                    <i class="bi" [class.bi-eye]="!showPassword" [class.bi-eye-slash]="showPassword"></i>
+                  </button>
+                </div>
+                <div class="form-text">At least 8 characters</div>
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="mb-4">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <div class="input-group">
+                  <input [type]="showConfirmPassword ? 'text' : 'password'" 
+                         class="form-control form-control-lg" 
+                         id="confirmPassword">
+                  <button class="btn btn-outline-secondary" 
+                          type="button" 
+                          (click)="toggleConfirmPassword()">
+                    <i class="bi" [class.bi-eye]="!showConfirmPassword" [class.bi-eye-slash]="showConfirmPassword"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Terms Checkbox -->
+              <div class="mb-4 form-check">
+                <input type="checkbox" class="form-check-input" id="terms">
+                <label class="form-check-label" for="terms">
+                  I agree to the <a href="#" class="text-decoration-none">Terms of Service</a>
+                </label>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">Register</button>
+
+              <!-- Login Link -->
+              <div class="text-center">
+                <p class="mb-0">Already have an account? 
+                  <a routerLink="/login" class="text-decoration-none fw-semibold">Sign in</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Image Column (visible on lg+) -->
+        <div class="col-lg-6 d-none d-lg-flex rounded-end reg">
+          <div class="d-flex align-items-center justify-content-center h-100 p-5 text-white">
+            <div class="text-center">
+              <img src="https://media.istockphoto.com/id/1463013729/photo/online-registration-form-for-modish-form-filling.jpg?s=612x612&w=0&k=20&c=Fnx06haU4IHYLcRpy9Po_TBknvBqVjicGuUWkGu8e6Y=" alt="Registration" class="img-fluid mb-4" style="max-height: 200px;">
+              <h1 class="fw-bold mb-3">Welcome to Our Platform</h1>
+              <p class="mb-4">Join us and explore a world of opportunities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
