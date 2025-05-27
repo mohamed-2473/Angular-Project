@@ -13,19 +13,26 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
 
-  private cart = new BehaviorSubject<Product[]>([])
+  // For Cart
+  private cartItemsSubject = new BehaviorSubject<Product[]>([]);
+  cartItems$ = this.cartItemsSubject.asObservable();
 
-  public cartItems = this.cart.asObservable();
+  // For Wishlist
+  private wishlistItemsSubject = new BehaviorSubject<Product[]>([]);
+  wishlistItems$ = this.wishlistItemsSubject.asObservable();
+
+
+
 
 
   // Add to cart with quantity tracking
   addToCart(product: Product) {
-    const currentItems = this.cart.getValue();
+    const currentItems = this.cartItemsSubject.getValue();
     const existingItemIndex = currentItems.findIndex(item => item.id === product.id);
     
     if (existingItemIndex === -1) {
       
-      this.cart.next([...currentItems, product]);
+      this.cartItemsSubject.next([...currentItems, product]);
     } else {
       
       alert("This item is already in your cart");
@@ -34,7 +41,7 @@ export class ServiceService {
 
   // Remove items with two modes
   removeFromCart(item: Product, removeAll: boolean = false) {
-    const currentItems = this.cart.getValue();
+    const currentItems = this.cartItemsSubject.getValue();
     
     if (removeAll) {
       
@@ -49,7 +56,7 @@ export class ServiceService {
     const updatedCart = currentItems.filter(
       cartItem => cartItem.id !== item.id
     );
-    this.cart.next(updatedCart);
+    this.cartItemsSubject.next(updatedCart);
   }
 
   private removeOneQuantity(item: Product, currentItems: Product[]) {
@@ -60,13 +67,37 @@ export class ServiceService {
     if (itemIndex !== -1) {
       const updatedCart = [...currentItems];
       updatedCart.splice(itemIndex, 1);
-      this.cart.next(updatedCart);
+      this.cartItemsSubject.next(updatedCart);
     }
   }
 
+
+  
+
+  // Add to Wishlist
+  addToWishlist(product: Product) {
+    const currentWishlist = this.wishlistItemsSubject.value;
+    
+    // Check if product already exists in wishlist
+    const exists = currentWishlist.some(item => item.id === product.id);
+    if (!exists) {
+      this.wishlistItemsSubject.next([...currentWishlist, product]);
+    } else {
+      alert("This item is already in your wishlist");
+      }
+  }
+
+  // Remove from Wishlist (if needed)
+  removeFromWishlist(productId: number) {
+    const updatedWishlist = this.wishlistItemsSubject.value.filter(item => item.id !== productId);
+    this.wishlistItemsSubject.next(updatedWishlist);
+  }
+
+
+
   // Get current cart items (synchronous)
   getCurrentCart(): Product[] {
-    return this.cart.getValue();
+    return this.cartItemsSubject.getValue();
   }
 
 

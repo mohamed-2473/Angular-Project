@@ -42,7 +42,7 @@ export class CartComponent {
   }
 
   ngOnInit() {
-    this.productService.cartItems.subscribe((data) => {
+    this.productService.cartItems$.subscribe((data) => {
       this.cartList = data;
       data.forEach(item => {
         if (!this.itemQuantities[item.id]) {

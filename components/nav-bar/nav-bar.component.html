@@ -22,15 +22,27 @@
             <i class="bi bi-person-plus me-2 fs-5"></i>Register
           </a>
         </li>
+
         <li class="nav-item">
           <a routerLink="/cart" routerLinkActive="active" 
              class="nav-link px-3 py-2 rounded-3 position-relative d-flex align-items-center">
-            <i class="bi bi-cart-dash-fill fs-4"></i>
-            @if (cartItemList && cartItemList.length > 0) {
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {{cartItemList.length}}
-                    <span class="visually-hidden">items in cart</span>
-                </span>
+            <i class="bi bi-cart-fill fs-4"></i>
+            @if (cartCount > 0) {
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                {{cartCount}}
+              </span>
+            }
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/wishlist" routerLinkActive="active" 
+             class="nav-link wish px-3 py-2 rounded-3 position-relative d-flex align-items-center">
+            <i class="bi bi-heart-fill fs-4"></i>
+            @if (wishlistCount > 0) {
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{wishlistCount}}
+              </span>
             }
           </a>
         </li>

@@ -11,13 +11,18 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './product.component.css'
 })
 export class ProductComponent {
-  @Input() productItem: any;
+  
+  @Input() productItem!: Product;
 
 
-  constructor(private productt: ServiceService) { }
+  constructor(private productService: ServiceService) { }
 
     addToCartFromHome(item: Product) {
-      this.productt.addToCart(item)
+      this.productService.addToCart(item)
+    }
+
+    addToWishlist() {
+      this.productService.addToWishlist(this.productItem);
     }
 
 

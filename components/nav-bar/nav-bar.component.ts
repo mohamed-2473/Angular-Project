@@ -11,16 +11,36 @@ import { Product } from '../../types/product';
 })
 export class NavBarComponent {
   
-  cartItemList: Product[] = [];
-  
-  counter=this.cartItemList?.length;
-  constructor(private productService:ServiceService){}
+  // cartItemList: Product[] = [];
+  // wishItemList: Product[] = [];
+  // constructor(private productService:ServiceService){}
+
+  // ngOnInit() {
+  //   this.productService.cartItems$.subscribe((data) => {
+  //     this.cartItemList = data;
+  //   });
+
+  //   this.productService.wishlistItems$.subscribe((wish) => {
+  //     this.wishItemList = wish;
+  //   });
+  // }
 
 
-  ngOnInit(){
-  this.productService.cartItems.subscribe((data)=>{
-    this.cartItemList=data
-  })
-}
+
+
+  cartCount = 0;
+  wishlistCount = 0;
+
+  constructor(private service: ServiceService) {}
+
+  ngOnInit() {
+    this.service.cartItems$.subscribe(items => {
+      this.cartCount = items.length;
+    });
+
+    this.service.wishlistItems$.subscribe(items => {
+      this.wishlistCount = items.length;
+    });
+  }
 
 }
