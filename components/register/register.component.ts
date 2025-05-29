@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router'; // استيراد Router
-import { AuthService } from '../../src/app/services/auth.service'; // مسار الخدمة ممكن يختلف حسب مشروعك
+// Update the path below to the correct relative path based on your project structure.
+// For example, if 'auth.service.ts' is in 'c:\Users\Lenovo\Desktop\angular_last\Angular-Project\services\auth.service.ts':
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
