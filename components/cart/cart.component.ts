@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from '../../types/product';
 import { ServiceService } from '../../services/service.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +16,15 @@ export class CartComponent {
   isLoading = true;
   itemQuantities: {[key: number]: number} = {};
 
-  constructor(private productService: ServiceService) { }
+  constructor(
+    private productService: ServiceService,
+    private router: Router
+  ) {}
+
+  proceedToCheckout() {
+    this.router.navigate(['/payment']);
+  }
+  
 
   // Remove all quantities of an item
   removeItemCompletely(item: Product) {

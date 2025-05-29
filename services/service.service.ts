@@ -94,6 +94,21 @@ export class ServiceService {
   }
 
 
+// Get total price of cart items
+getTotalPrice(): number {
+  return this.cartItemsSubject.getValue().reduce((total, item) => total + item.price, 0);
+}
+
+// Clear entire cart
+clearCart(): void {
+  this.cartItemsSubject.next([]);
+}
+
+// Get cart item count
+getCartItemCount(): number {
+  return this.cartItemsSubject.getValue().length;
+}
+
 
   // Get current cart items (synchronous)
   getCurrentCart(): Product[] {

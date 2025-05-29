@@ -7,6 +7,8 @@ import { NotFoundComponent } from '../../components/not-found/not-found.componen
 import { SingleProductComponent } from '../../components/single-product/single-product.component';
 import { ProductComponent } from '../../components/product/product.component';
 import { WishlistComponent } from '../../components/wishlist/wishlist.component';
+import { PaymentComponent } from '../../components/payment/payment.component';
+import { OrderConfirmComponent } from '../../components/order-confirm/order-confirm.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent, title: 'Home Page' },
@@ -16,7 +18,8 @@ export const routes: Routes = [
     { path: 'wishlist', component: WishlistComponent, title: 'wishlist Page' },
     { path: 'single-product/:id', component: SingleProductComponent },
     { path: 'home', component: ProductComponent, title: 'Products Page' },  // <-- هنا أضفت المسار
-
+    { path: 'payment', component: PaymentComponent },
+    { path: 'order-confirmation', component: OrderConfirmComponent },
     {path:'',redirectTo:'/home',pathMatch:'full'},
     { path: '**', component: NotFoundComponent, title: 'not found ⚠ ' },
 ];
