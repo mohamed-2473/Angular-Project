@@ -1,7 +1,8 @@
- import { Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; // لو بتستخدم routerLink في HTML
+import { RouterModule, Router } from '@angular/router'; // استيراد Router
+import { AuthService } from '../../src/app/services/auth.service'; // مسار الخدمة ممكن يختلف حسب مشروعك
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,11 @@ export class RegisterComponent {
 
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,  // إضافة الخدمة
+    private router: Router             // إضافة الراوتر
+  ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -44,13 +49,18 @@ export class RegisterComponent {
       return;
     }
 
-    const { name, email, password } = this.registerForm.value;
-
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    users.push({ name, email, password });
-    localStorage.setItem('users', JSON.stringify(users));
-
-    alert('Registration successful!');
-    this.registerForm.reset();
+    // استدعاء خدمة التسجيل بدلاً من استخدام localStorage
+    this.authService.register(this.registerForm.value).subscribe({
+      next: (res) => {
+        console.log('User registered!', res);
+        alert('Registration successful!');
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error('Registration error:', err);
+        alert('Registration failed. Please try again.');
+      }
+    });
   }
 }
+
