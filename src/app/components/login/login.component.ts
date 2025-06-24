@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+// Adjust the import path according to your project structure.
+// For example, if your login.component.ts is in 'components/login' and your service is in 'app/services':
+// Update the path below to the correct relative path where auth.service.ts actually exists.
+// For example, if AuthService is in 'src/app/services/auth.service.ts', use the following:
+// Update the path below to the correct relative path where auth.service.ts actually exists.
+// For example, if AuthService is in 'src/app/services/auth.service.ts', use the following:
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -39,12 +44,14 @@ export class LoginComponent {
     }
 
     this.authService.login(this.loginForm.value).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         console.log('Login successful!', res);
-        // هنا ممكن تخزن التوكن مثلاً في localStorage أو service حسب ما تستلم من السيرفر
-        // مثال: localStorage.setItem('token', res.token);
 
-        this.router.navigate(['/home']); // أو أي صفحة بعد تسجيل الدخول
+        // ✅ حفظ بيانات المستخدم والتوكن في localStorage
+        this.authService.setUserData(res.user, res.token);
+
+        // ✅ التوجيه إلى الصفحة الرئيسية
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         console.error('Login failed', err);

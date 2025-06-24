@@ -1,14 +1,15 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../../components/home/home.component';
-import { CartComponent } from '../../components/cart/cart.component';
-import { LoginComponent } from '../../components/login/login.component';
-import { RegisterComponent } from '../../components/register/register.component';
-import { NotFoundComponent } from '../../components/not-found/not-found.component';
-import { SingleProductComponent } from '../../components/single-product/single-product.component';
-import { ProductComponent } from '../../components/product/product.component';
-import { WishlistComponent } from '../../components/wishlist/wishlist.component';
-import { PaymentComponent } from '../../components/payment/payment.component';
-import { OrderConfirmComponent } from '../../components/order-confirm/order-confirm.component';
+// Update the path below to the correct location of home.component.ts
+import { HomeComponent } from './components/home/home.component';
+import { CartComponent } from './components/cart/cart.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SingleProductComponent } from './components/single-product/single-product.component';
+import { ProductComponent } from './components/product/product.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { OrderConfirmComponent } from './components/order-confirm/order-confirm.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent, title: 'Home Page' },

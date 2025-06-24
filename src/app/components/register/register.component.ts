@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router'; // استيراد Router
-// Update the path below to the correct relative path based on your project structure.
-// For example, if 'auth.service.ts' is in 'c:\Users\Lenovo\Desktop\angular_last\Angular-Project\services\auth.service.ts':
+import { RouterModule, Router } from '@angular/router';
+// Update the path below to the correct relative path where auth.service.ts actually exists.
+// For example, if it's in 'services' at the project root:
+// Update the path below to the correct relative path where auth.service.ts actually exists.
+// For example, if it's in 'src/app/services':
+// Update the path below to the correct relative path where auth.service.ts actually exists.
+// For example, if it's in the same folder as this component:
 import { AuthService } from '../../services/auth.service';
+// Or, if it's in a different folder, adjust the path accordingly.
 
 @Component({
   selector: 'app-register',
@@ -15,13 +20,12 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent {
   showPassword = false;
   showConfirmPassword = false;
-
   registerForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,  // إضافة الخدمة
-    private router: Router             // إضافة الراوتر
+    private authService: AuthService,
+    private router: Router
   ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
@@ -51,12 +55,17 @@ export class RegisterComponent {
       return;
     }
 
-    // استدعاء خدمة التسجيل بدلاً من استخدام localStorage
     this.authService.register(this.registerForm.value).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         console.log('User registered!', res);
+
+        // ✅ حفظ البيانات وتسجيل الدخول مباشرةً
+        this.authService.setUserData(res.user, res.token);
+
         alert('Registration successful!');
-        this.router.navigate(['/login']);
+
+        // ✅ التوجيه للصفحة الرئيسية
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         console.error('Registration error:', err);
@@ -65,4 +74,3 @@ export class RegisterComponent {
     });
   }
 }
-

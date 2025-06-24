@@ -20,29 +20,33 @@ export interface Meta {
 }
 
 export interface Product {
-  quantity: number;
-features: any;
-colors: any;
   id: number;
   title: string;
   description: string;
   category: string;
+  brand: string;
+  sku: string;
   price: number;
   discountPercentage: number;
   rating: number;
   stock: number;
-  tags: string[];
-  brand: string;
-  sku: string;
-  weight: number;
-  dimensions: Dimensions;
+  quantity: number; // used for cart
+  minimumOrderQuantity: number;
+  availabilityStatus: string;
+  returnPolicy: string;
   warrantyInformation: string;
   shippingInformation: string;
-  availabilityStatus: string;
-  reviews: Review[];
-  returnPolicy: string;
-  minimumOrderQuantity: number;
-  meta: Meta;
+
+  weight: number;
+  dimensions: Dimensions;
+
+  tags: string[];
+  features: any;   // you can define a better interface if structure is known
+  colors: any;     // same here – if you know the type, use it
+
   images: string[];
   thumbnail: string;
+
+  reviews: Review[];
+  meta: Meta;
 }
